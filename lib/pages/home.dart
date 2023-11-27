@@ -104,7 +104,6 @@ class Home extends StatelessWidget {
           ),
         ),
       ),
-      backgroundColor: Colors.white,
     );
   }
 }

@@ -10,15 +10,10 @@ import 'package:quizapp/pages/Score_Screen.dart';
 
 class QuestionControler extends GetxController
     with SingleGetTickerProviderMixin {
-  // late AnimationController _animationController;
-  // late Animation<double> _animation;
-
-  // Animation<double> get animation => _animation;
-
-  PageController? _pageController; // Making it nullable
+      
+  PageController? _pageController;
 
   PageController get pageController {
-    // Check if it's null, initialize if needed, then return
     _pageController = PageController();
     return _pageController!;
   }
@@ -38,9 +33,8 @@ class QuestionControler extends GetxController
   bool _isAnswered = false;
   bool get isAnswered => this._isAnswered;
 
-  late BuildContext context; // Add a variable to store the context
+  late BuildContext context;
 
-  // Add a method to set the context
   void setContext(BuildContext ctx) {
     this.context = ctx;
   }
@@ -77,15 +71,12 @@ class QuestionControler extends GetxController
   int get numOfCorrectAns => this._numOfCorrectAns;
 
   void checkAns(Question question, int selectedIndex) {
-    // because once user press any option then it will run
     _isAnswered = true;
     _correctAns = question.answer;
     _selectedAns = selectedIndex;
 
     if (_correctAns == _selectedAns) _numOfCorrectAns++;
 
-    // // It will stop the counter
-    // _animationController.stop();
     update();
 
     Future.delayed(Duration(seconds: 3), () {
@@ -98,14 +89,6 @@ class QuestionControler extends GetxController
       _isAnswered = false;
       _pageController?.nextPage(
           duration: Duration(milliseconds: 250), curve: Curves.ease);
-
-      // // Reset the counter
-      // _animationController.reset();
-
-      // Then start it again
-      // Once timer is finish go to the next qn
-      // _animationController.forward().whenComplete(nextQuestion);
-      
     } else {
       Navigator.of(context).push(
         MaterialPageRoute(builder: (context) => ScoreScreen()),
@@ -116,25 +99,10 @@ class QuestionControler extends GetxController
   @override
   void onInit() {
     super.onInit();
-    // initializeAnimation();
   }
-
-  // void initializeAnimation() {
-  //   _animationController = AnimationController(
-  //     duration: const Duration(seconds: 10),
-  //     vsync: this,
-  //   );
-  //   _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
-  //     ..addListener(() {
-  //       update();
-  //     });
-  //   _pageController = PageController();
-  //   _animationController.forward().whenComplete(nextQuestion);
-  // }
 
   @override
   void onClose() {
-    // _animationController.dispose();
     _pageController?.dispose();
     super.onClose();
   }

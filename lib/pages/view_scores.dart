@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_local_variable, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +16,8 @@ class ScoreTableScreen extends StatelessWidget {
 
     return WillPopScope(
       onWillPop: () async {
-          Navigator.pop(context, true); // Pass true if score was updated, false otherwise
+        Navigator.pop(
+            context, true); // Pass true if score was updated, false otherwise
         return false;
       },
       child: Scaffold(
@@ -26,6 +27,7 @@ class ScoreTableScreen extends StatelessWidget {
         body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: EdgeInsets.all(8.0),
@@ -35,6 +37,13 @@ class ScoreTableScreen extends StatelessWidget {
                     'User Name: ${user.username}',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 10),
+                child: Text(
+                  'Age: ${user.age} ',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 ),
               ),
               SizedBox(

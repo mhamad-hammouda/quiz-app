@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_final_fields, non_constant_identifier_names, unused_local_variable
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, prefer_final_fields, non_constant_identifier_names, unused_local_variable, unnecessary_string_interpolations
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -48,6 +48,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
         Person updatedUser = Person(
           username: currentUser.username,
           score: updatedScoreList,
+          age: '${currentUser.age}',
         );
 
         userData.updateUser(updatedUser);
@@ -82,6 +83,18 @@ class _ScoreScreenState extends State<ScoreScreen> {
               SizedBox(
                 height: 10,
               ),
+              passedHalf
+                  ? Image.asset(
+                      'assets/images/passed.jpg',
+                      width: 100,
+                    ) // Display this image if score is over half
+                  : Image.asset(
+                      'assets/images/failed.webp',
+                      width: 100,
+                    ), // Display
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 'Your Score: ',
                 style: TextStyle(fontSize: 30),
@@ -105,7 +118,7 @@ class _ScoreScreenState extends State<ScoreScreen> {
                 backgroundColor: Colors.grey,
               ),
               SizedBox(
-                height: 100,
+                height: 50,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
